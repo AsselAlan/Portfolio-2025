@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Cal Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
