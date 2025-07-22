@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
 import Servicios from "./components/Servicios";
 import Herramientas from "./components/Herramientas";
 import Contacto from "./components/Contacto";
-import Navbar from "./components/Navbar";
 import Hero from "./components/hero/Hero";
 import SobreMi from "./components/sobremi/SobreMi";
 import Proyectos from "./components/proyectos/Proyectos";
 import Promociones from "./components/promos/promociones";
 import Testimonios from "./components/testimonios/Testimonios";
 import TechnologiesCarousel from "./components/tecnologias/tecnologias";
+import Navbar from "./components/navbar/Navbar";
+import DemosList from "./components/demos/DemosList";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -50,18 +54,24 @@ export default function App() {
     );
   }
 
-  return (
-    <div>
+ return (
+    <Router>
       <Navbar />
-      <Hero />
-      <Promociones />
-      <TechnologiesCarousel />
-      <SobreMi />
-      <Proyectos />
-      <Servicios />
-      {/* <Herramientas /> */}
-      <Testimonios />
-      <Contacto />
-    </div>
+      <Routes>
+        <Route path="*" element={
+          <>
+            <Hero />
+            <Promociones />
+            <TechnologiesCarousel />
+            <SobreMi />
+            <Proyectos />
+            <Servicios />
+            <Testimonios />
+            <Contacto />
+          </>
+        } />
+        <Route path="/Portfolio-2025/demos" element={<DemosList />} />
+      </Routes>
+    </Router>
   );
 }

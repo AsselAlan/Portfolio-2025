@@ -1,180 +1,96 @@
-import { useState, useRef, useEffect } from "react";
 import "./promociones.css";
-import ChatBotDemo from "./chatbot";
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Promociones() {
-  const [currentBenefit, setCurrentBenefit] = useState(0);
-  const carouselRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const benefits = [
+  const promos = [
+    {
+      icon: "🤖",
+      title: "ChatBots IA 24/7 para",
+      highlight: "Web y WhatsApp",
+      description: "Transformá tu atención al cliente con IA avanzada. Mis chatbots no solo responden preguntas, sino que califican leads, toman reservas, procesan pedidos y guían a tus clientes hacia la compra. Funcionan tanto en tu sitio web como en WhatsApp, brindando una experiencia omnicanal perfecta.",
+      buttonText: "PROBAR DEMO",
+      buttonLink: "/Portfolio-2025/demos#demo-chatbot-roles"
+    },
     {
       icon: "⚡",
-      title: "Respuesta Instantánea",
-      description: "Atiende consultas las 24 horas, todos los días del año. Tus clientes nunca esperan."
+      title: "Automatizaciones con",
+      highlight: "n8n y APIs",
+      description: "Conectá todas tus herramientas y procesos de negocio. Desde sincronizar inventarios hasta procesar pedidos automáticamente. Integraciones con MercadoLibre, WhatsApp, Google Sheets, Supabase y más de 400 servicios disponibles.",
+      buttonText: "VER AUTOMATIZACIONES",
+      buttonLink: "/Portfolio-2025/demos"
     },
     {
-      icon: "🎯",
-      title: "Calificación de Leads",
-      description: "Identifica automáticamente clientes potenciales y los deriva al vendedor correcto."
+      icon: "🌐",
+      title: "Desarrollo Web Full Stack con",
+      highlight: "React y Supabase",
+      description: "Sitios web modernos, e-commerce completos y aplicaciones web escalables. Con autenticación, bases de datos en tiempo real, pagos integrados y paneles de administración. Todo optimizado para performance y SEO.",
+      buttonText: "VER PROYECTOS",
+      buttonLink: "/Portfolio-2025/demos"
     },
     {
-      icon: "💰",
-      title: "Aumenta Conversiones",
-      description: "Hasta 40% más ventas con recomendaciones personalizadas y seguimiento automatizado."
+      icon: "📊",
+      title: "Dashboards y Analytics con",
+      highlight: "IA Integrada",
+      description: "Paneles de control inteligentes que no solo muestran datos, sino que los interpretan. Con insights automáticos, predicciones y alertas personalizadas. Conectados a todas tus fuentes de datos en tiempo real.",
+      buttonText: "VER DASHBOARDS",
+      buttonLink: "/Portfolio-2025/demos"
     },
     {
-      icon: "📱",
-      title: "Omnicanal",
-      description: "Mismo asistente en tu web, WhatsApp, Instagram y donde necesites estar."
-    },
-    {
-      icon: "🤝",
-      title: "Personalización Total",
-      description: "Entrenado específicamente para tu negocio, con tu tono de voz y conocimiento de productos."
-    },
-    {
-      icon: "📈",
-      title: "Analytics Avanzados",
-      description: "Reportes detallados de conversaciones, conversiones y puntos de mejora."
+      icon: "🔄",
+      title: "Integración de Sistemas y",
+      highlight: "APIs Personalizadas",
+      description: "Conectá sistemas que no hablan entre sí. Desarrollo de APIs REST, integraciones con ERPs, CRMs, e-commerce y servicios de terceros. Sincronización bidireccional y procesamiento de datos en tiempo real.",
+      buttonText: "CONSULTAR",
+      buttonLink: "/Portfolio-2025/demos"
     }
   ];
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleTouchStart = (e) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
-    setScrollLeft(carouselRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    carouselRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-
-  const handleCardClick = (index) => {
-    if (isDragging) return; // No navegar si está arrastrando
-    setCurrentBenefit(index);
-    const cardWidth = 280; // ancho de cada card + gap
-    carouselRef.current.scrollTo({
-      left: index * cardWidth,
-      behavior: 'smooth'
-    });
-  };
-
-  // Auto-scroll effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isDragging && carouselRef.current) {
-        const nextIndex = (currentBenefit + 1) % benefits.length;
-        setCurrentBenefit(nextIndex);
-        const cardWidth = 280;
-        carouselRef.current.scrollTo({
-          left: nextIndex * cardWidth,
-          behavior: 'smooth'
-        });
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    fade: true,
+    cssEase: 'linear',
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          dots: true
+        }
       }
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [currentBenefit, isDragging, benefits.length]);
+    ]
+  };
 
   return (
     <section className="chatbot-showcase" id="demo-chatbot">
       <div className="container">
-        {/* Header principal */}
-        <div className="showcase-header text-center mb-5">
-          <h2 className="showcase-title">
-            🤖 Servicio de ChatBots IA para <span className="highlight-text">Web y WhatsApp</span>
-          </h2>
-          {/* <h3 className="showcase-subtitle">
-            Asistentes Conversacionales que Venden, Atienden 24/7 y Convierten 
-          </h3> */}
-          <p className="showcase-description">
-            Transformá tu atención al cliente con IA avanzada. Mis chatbots no solo responden preguntas, 
-            sino que <strong>califican leads, toman reservas, procesan pedidos y guían a tus clientes hacia la compra</strong>. 
-            Funcionan tanto en tu sitio web como en WhatsApp, brindando una experiencia omnicanal perfecta.
-          </p>
-        </div>
-      
-
-      {/* Selector de roles mejorado */}
-      <div className="role-selector">
-          <h5 className="selector-title mb-4">💬 <span className="highlight-text">Probá una demo en vivo,</span> este bot simula ser un chatbot para diferentes roles:</h5>
-          <div className="instructions-content">
-            <div className="instruction-step">
-              <p className="showcase-description text-start">
-                - Seleccioná un ROL para ver diferentes personalidades del bot. <br />
-                - Pedí recomendaciones, hacé preguntas o solicitá información. <br />
-                - El bot comprende contexto, hace preguntas de calificación y guía hacia la conversión.
-              </p>  
+        <Slider {...settings}>
+          {promos.map((promo, index) => (
+            <div key={index}>
+              <div className="showcase-header text-center mb-5">
+                <h2 className="showcase-title">
+                  {promo.icon} {promo.title} <span className="highlight-text">{promo.highlight}</span>
+                </h2>
+                <p className="showcase-description mb-4">
+                  {promo.description}
+                </p>
+                <Link className="btn-contactar" to={promo.buttonLink}>
+                  {promo.buttonText}
+                </Link>
+              </div>
             </div>
-        </div>
-
-        {/* Demo del ChatBot */}
-        <div className="chatbot-demo-container mt-5">
-          <ChatBotDemo />
-        </div>
-        
-
-        <div className="use-cases mt-5">
-          <h4 className="use-cases-title highlight-text text-center mb-4">Casos de uso reales:</h4>
-          <div className="use-cases-grid">
-            <div className="use-case-card">
-              <h5>🍽️ Restaurantes</h5>
-              <ul>
-                <li>Toma reservas automáticamente</li>
-                <li>Recomienda platos según preferencias</li>
-                <li>Procesa pedidos de delivery</li>
-                <li>Informa horarios y ubicación</li>
-              </ul>
-            </div>
-            <div className="use-case-card">
-              <h5>🏥 Clínicas Médicas</h5>
-              <ul>
-                <li>Agenda turnos en tiempo real</li>
-                <li>Informa sobre especialidades</li>
-                <li>Responde dudas sobre obras sociales</li>
-                <li>Deriva emergencias a guardia</li>
-              </ul>
-            </div>
-            <div className="use-case-card">
-              <h5>🛒 E-commerce</h5>
-              <ul>
-                <li>Recomienda productos personalizados</li>
-                <li>Procesa devoluciones y garantías</li>
-                <li>Informa sobre stock y envíos</li>
-                <li>Recupera carritos abandonados</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+          ))}
+        </Slider>
       </div>
     </section>
   );

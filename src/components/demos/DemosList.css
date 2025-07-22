@@ -1,0 +1,160 @@
+.container-demos {
+  background: linear-gradient(#000000 0%, #1a1a1a 100%);
+  padding: 5% 0 8%;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+    max-width: 1140px ;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+
+/* Instrucciones de uso */
+.instructions-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.instruction-step {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.3rem;
+  gap: 1rem;
+}
+
+.instruction-step p {
+  color: #e0e0e0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.instruction-step strong {
+  color: #ffc107;
+}
+
+/* Selector de roles */
+.role-selector {
+  text-align: center;
+  width: 100%;
+}
+
+.selector-title {
+  color: #e0e0e0;
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Container del chatbot */
+.chatbot-demo-container {
+  max-width: 800px;
+  min-height: 700px;
+  margin: 0 auto;
+  background: rgba(20, 20, 20, 0.8);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Casos de uso */
+.use-cases {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.use-cases-title {
+  color: #ffc107;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.use-case-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.use-case-card:hover {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.4);
+}
+
+.use-case-card h5 {
+  color: #ffc107;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.use-case-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.use-case-card li {
+  color: #e0e0e0;
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.use-case-card li::before {
+  content: '✓';
+  color: #ffc107;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chatbot-showcase {
+    padding: 4% 0 6%;
+  }
+  
+  .instruction-step {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .use-cases-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .chatbot-demo-container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-title {
+    font-size: 2rem;
+  }
+  
+  .showcase-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .showcase-description {
+    font-size: 0.95rem;
+  }
+}
