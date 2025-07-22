@@ -10,6 +10,7 @@ import Hero from "./components/hero/Hero";
 import SobreMi from "./components/sobremi/SobreMi";
 import Proyectos from "./components/proyectos/Proyectos";
 import Promociones from "./components/promos/promociones";
+import Testimonios from "./components/testimonios/Testimonios";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -57,6 +58,7 @@ export default function App() {
       <Proyectos />
       <Servicios />
       <Herramientas />
+      <Testimonios />
       <Contacto />
     </div>
   );

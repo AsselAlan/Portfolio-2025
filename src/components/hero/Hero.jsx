@@ -70,7 +70,7 @@ export default function Hero() {
       {/* Texto */}
       <div className="floating-text">
         <h1 className="display-3 hero-title">
-          Hola, soy <span className="text-warning">Alan.</span>
+          Hola, soy <span className="highlight-text">Alan.</span>
         </h1>
         <p className="lead hero-subtitle">
           Creo soluciones con IA, desarrollo web y automatización:

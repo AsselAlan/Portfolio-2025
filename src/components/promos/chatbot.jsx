@@ -1,24 +1,27 @@
 import { useState } from "react";
+import "./chatbot.css"
+
 
 export default function ChatBotDemo() {
   const [rol, setRol] = useState("restaurant");
   const [mensajes, setMensajes] = useState([]);
   const [input, setInput] = useState("");
   const [mostrarSugerencias, setMostrarSugerencias] = useState(true);
+  const [escribiendo, setEscribiendo] = useState(false);
 
   const sugerencias = {
     restaurant: [
-      "Quiero ver el menú",
-      "Reservar una mesa",
-      "¿Qué me recomendás?",
+      "Buenas, quiero ver el menú",
+      "Hola, quiero reservar una mesa",
+      "¿Qué plato me recomendás?",
     ],
     clinica: [
-      "Quiero sacar un turno",
+      "Hola, quiero sacar un turno",
       "¿Atienden guardia?",
-      "¿Cuáles son las especialidades?",
+      "Hola, a que hora abren?",
     ],
     ecommerce: [
-      "Estoy buscando auriculares",
+      "Hola, estoy buscando auriculares",
       "¿Tienen ofertas?",
       "Recomendame algo",
     ],
@@ -37,11 +40,26 @@ export default function ChatBotDemo() {
     }
   };
 
+  const TypingIndicator = () => (
+    <div className="d-flex align-items-end mb-2 justify-content-end">
+      <div className="chat-msg bot p-2 rounded d-flex align-items-center">
+        <span className="typing-text me-2">Escribiendo</span>
+        <div className="typing-dots">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
+      </div>
+      <div className="bot-avatar ms-2">{getBotInitial()}</div>
+    </div>
+  );
+
   const enviarMensaje = async (mensajeTexto) => {
     const userMsg = { tipo: "user", texto: mensajeTexto };
     setMensajes((prev) => [...prev, userMsg]);
     setInput("");
     setMostrarSugerencias(false);
+    setEscribiendo(true);
 
     try {
       const res = await fetch(
@@ -58,10 +76,18 @@ export default function ChatBotDemo() {
 
       try {
         respuesta =
-          typeof data.output === "string" ? JSON.parse(data.output) : data;
+          typeof data.output === "string"
+            ? JSON.parse(data.output)
+            : data;
       } catch (err) {
-        console.error("Error al parsear respuesta:", err);
+        // Si falla el parseo, usar el texto plano
+        respuesta = { mensaje: data.output || data };
       }
+
+      // Simular un pequeño delay para mostrar el indicador
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      setEscribiendo(false);
 
       if (respuesta.mensaje) {
         setMensajes((prev) => [
@@ -90,6 +116,7 @@ export default function ChatBotDemo() {
         ]);
       }
     } catch (err) {
+      setEscribiendo(false);
       setMensajes((prev) => [
         ...prev,
         { tipo: "bot", texto: "Error al contactar con el servidor." },
@@ -98,8 +125,15 @@ export default function ChatBotDemo() {
   };
 
   const handleSend = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || escribiendo) return;
     enviarMensaje(input);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
@@ -108,20 +142,23 @@ export default function ChatBotDemo() {
         {["restaurant", "clinica", "ecommerce"].map((r) => (
           <button
             key={r}
-            className="btn"
+            className={`btn ${rol === r ? 'btn-warning' : 'btn-outline-warning'}`}
             onClick={() => {
               setRol(r);
               setMensajes([]);
               setInput("");
               setMostrarSugerencias(true);
+              setEscribiendo(false);
             }}
           >
-            {r.charAt(0).toUpperCase() + r.slice(1)}
+            {r === 'restaurant' && '🍽️ Restaurante'}
+            {r === 'clinica' && '🏥 Clínica Médica'}
+            {r === 'ecommerce' && '🛒 E-commerce'}
           </button>
         ))}
       </div>
 
-      <div className="chatbot-window card p-3 mb-3">
+      <div className="chatbot-window card p-3 mb-3" style={{ height: '500px', overflowY: 'auto' }}>
         {mensajes.map((msg, i) => (
           <div
             key={i}
@@ -149,19 +186,28 @@ export default function ChatBotDemo() {
           </div>
         ))}
 
+        {/* Indicador de escritura */}
+        {escribiendo && <TypingIndicator />}
+
         {/* Sugerencias rápidas */}
-        {mostrarSugerencias && (
+        {mostrarSugerencias && !escribiendo && (
           <div className="d-flex flex-column gap-2 mt-3">
-            {sugerencias[rol].map((sug, i) => (
-              <button
-                key={i}
-                className="btn btn-sm btn-outline-light"
-                style={{ backgroundColor: "#343a40", borderColor: "#ffc107" }}
-                onClick={() => enviarMensaje(sug)}
+            <small className="text-muted text-center mb-2">
+              💡 Probá estas consultas típicas:
+            </small>
+            <div className="justify-content-start chatbot-sugerencias-btns d-flex flex-wrap gap-2">
+              {sugerencias[rol].map((sug, i) => (
+                <button
+                  key={i}
+                  className="btn btn-sm btn-outline-light"
+              style={{ backgroundColor: "#343a40", borderColor: "#ffc107" }}
+              onClick={() => enviarMensaje(sug)}
+              disabled={escribiendo}
               >
                 {sug}
               </button>
             ))}
+            </div>
           </div>
         )}
       </div>
@@ -170,12 +216,25 @@ export default function ChatBotDemo() {
         <input
           type="text"
           className="form-control"
-          placeholder="Escribí un mensaje..."
+          placeholder={escribiendo ? "Esperando respuesta..." : "Escribí un mensaje..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyPress={handleKeyPress}
+          disabled={escribiendo}
         />
-        <button className="btn btn-warning" onClick={handleSend}>
-          Enviar
+        <button 
+          className="btn btn-warning" 
+          onClick={handleSend}
+          disabled={escribiendo || !input.trim()}
+        >
+          {escribiendo ? (
+            <>
+              <span className="spinner-border spinner-border-sm me-1" role="status"></span>
+              Enviando...
+            </>
+          ) : (
+            'Enviar'
+          )}
         </button>
       </div>
     </div>

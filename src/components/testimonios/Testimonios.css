@@ -1,0 +1,55 @@
+/* Testimonios.css */
+
+.testimonio-card {
+  transition: all 0.3s ease;
+  min-height: 250px;
+}
+
+.testimonio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1);
+}
+
+.quote-icon {
+  z-index: 10;
+}
+
+.testimonio-mini {
+  transition: all 0.3s ease;
+}
+
+.testimonio-mini:hover {
+  transform: translateY(-2px);
+  border-color: var(--bs-warning) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Animaciones para el cambio de testimonios */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.testimonio-card {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .testimonio-card {
+    min-height: auto;
+  }
+  
+  .testimonio-mini {
+    width: 200px !important;
+  }
+}

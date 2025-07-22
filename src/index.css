@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
 
+/* Reset y consistencia global */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,4 +13,64 @@ body {
 
 a {
   text-decoration: none;
+}
+
+/* Asegurar que todas las secciones usen el mismo sistema de container */
+section {
+  width: 100%;
+}
+
+/* El hero es la excepción - puede usar full width */
+.hero-section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+/* Consistencia en spacing */
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+/* Remover padding horizontal extra de containers personalizados */
+.sobre-mi-container,
+.chatbot-showcase,
+.promociones-section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Asegurar que el container de Bootstrap tenga precedencia */
+.container {
+  max-width: 1140px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
