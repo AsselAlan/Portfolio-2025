@@ -1,0 +1,32 @@
+.technologies-section {
+  background: linear-gradient(#1a1a1a 0%, #222 100%);
+    text-align: center;
+    width: 100%;
+    padding: 0px 10%;
+  }
+  
+  .section-title {
+    margin-bottom: 20px;
+  }
+  
+  .tech-logo {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Ajusta según sea necesario */
+  }
+  
+  .tech-logo svg {
+    width: 50px; /* Ajusta el tamaño de los íconos */
+    height: 5%;
+  }
+
+  .technologies-section .tech-logo img{
+    width: 150px;
+  }
+
+  .tech-logo img {
+    max-height: 100px;
+    max-width: 150px;
+    margin: 0 auto;
+  }

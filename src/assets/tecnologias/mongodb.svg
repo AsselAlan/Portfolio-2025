@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" fill="#4db33d" rx="8"/>
+  <circle cx="25" cy="35" r="15" fill="white"/>
+  <circle cx="75" cy="35" r="15" fill="white"/>
+  <circle cx="50" cy="65" r="15" fill="white"/>
+  <path d="M25 35L75 35L50 65z" fill="none" stroke="#4db33d" stroke-width="3"/>
+  <circle cx="25" cy="35" r="5" fill="#4db33d"/>
+  <circle cx="75" cy="35" r="5" fill="#4db33d"/>
+  <circle cx="50" cy="65" r="5" fill="#4db33d"/>
+  <text x="50" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">MongoDB</text>
+</svg>

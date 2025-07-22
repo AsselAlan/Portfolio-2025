@@ -11,6 +11,7 @@ import SobreMi from "./components/sobremi/SobreMi";
 import Proyectos from "./components/proyectos/Proyectos";
 import Promociones from "./components/promos/promociones";
 import Testimonios from "./components/testimonios/Testimonios";
+import TechnologiesCarousel from "./components/tecnologias/tecnologias";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -54,10 +55,11 @@ export default function App() {
       <Navbar />
       <Hero />
       <Promociones />
+      <TechnologiesCarousel />
       <SobreMi />
       <Proyectos />
       <Servicios />
-      <Herramientas />
+      {/* <Herramientas /> */}
       <Testimonios />
       <Contacto />
     </div>

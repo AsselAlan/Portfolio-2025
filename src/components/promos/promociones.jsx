@@ -173,8 +173,7 @@ export default function Promociones() {
               </ul>
             </div>
           </div>
-        </div>z
-
+        </div>
       </div>
       </div>
     </section>

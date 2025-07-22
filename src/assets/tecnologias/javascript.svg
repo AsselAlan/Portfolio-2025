@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" fill="#f7df1e" rx="8"/>
+  <path d="M20 70h25v-15l-8-10h8V30h-25v40z" fill="#000"/>
+  <path d="M55 45h20v10h-15v5h15v10H55V45z" fill="#000"/>
+  <path d="M22 32h21v11H22z" fill="#f7df1e"/>
+  <path d="M25 47v15h5v-8h8l5-7h-18z" fill="#f7df1e"/>
+  <path d="M57 47h16v6h-11v2h11v6H57z" fill="#f7df1e"/>
+  <text x="50" y="90" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="10" font-weight="bold">JavaScript</text>
+</svg>

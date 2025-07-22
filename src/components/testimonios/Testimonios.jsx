@@ -154,7 +154,7 @@ export default function Testimonios() {
             </div>
 
             {/* Controles de navegación */}
-            <div className="d-flex justify-content-center align-items-center mt-4">
+            {/* <div className="d-flex justify-content-center align-items-center mt-4">
               <button 
                 className="btn btn-outline-warning btn-sm me-3"
                 onClick={anterior}
@@ -162,7 +162,6 @@ export default function Testimonios() {
                 <i className="bi bi-chevron-left"></i>
               </button>
 
-              {/* Dots indicator */}
               <div className="d-flex gap-2">
                 {testimonios.map((_, index) => (
                   <button
@@ -182,7 +181,7 @@ export default function Testimonios() {
               >
                 <i className="bi bi-chevron-right"></i>
               </button>
-            </div>
+            </div> */}
 
             {/* Toggle autoplay */}
             <div className="text-center mt-3">
@@ -198,7 +197,7 @@ export default function Testimonios() {
         </div>
 
         {/* Grid de testimonios mini */}
-        <div className="row mt-5">
+        {/* <div className="row mt-5">
           <div className="col-12">
             <div className="d-flex gap-3 overflow-auto pb-3">
               {testimonios.map((test, index) => (
@@ -237,7 +236,7 @@ export default function Testimonios() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Call to action */}
         <div className="text-center mt-5">
